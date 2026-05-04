@@ -1,5 +1,16 @@
 <?php
 
+$zprava = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $password = $_POST["password"] ?? "";
+
+    if (strlen($password) < 8 ) {
+        $zprava = "Heslo je příliš krátké.";
+    } else {
+        $zprava = "Heslo bylo přijato.";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="cs">
@@ -15,9 +26,15 @@
         </section>
     </header>
 
-    <main></main>
-    
-    <footer></footer>
+    <main>
+        <form method="POST">
+            <label for="password">Heslo: </label>
+            <input type="password" name="password">
+            <button type="submit">Odeslat</button>
+        </form>
 
+        <p><?php echo "$zprava"; ?></p>
+    </main>
+    
 </body>
 </html>
